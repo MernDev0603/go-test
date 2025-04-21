@@ -1,0 +1,55 @@
+services:
+  # Backend service (Go)
+  backend:
+    build:
+      context: ./backend  # Path to your Go backend
+    ports:
+      - "8080:8080"  # Expose backend on port 8080
+    depends_on:
+      - db  # Ensure db is available before starting the backend
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=  # Empty password for the database
+      - DB_NAME=bowatt
+    networks:
+      - app-network
+
+  # MySQL database service
+  db:
+    image: mysql:8.0  # Use official MySQL image
+    container_name: mysql-db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  # Allow MySQL to run without a password
+      MYSQL_DATABASE: bowatt  # Default database name
+    volumes:
+      - db-data:/var/lib/mysql  # Persist data on the host machine
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional: Initialize DB with custom SQL
+    ports:
+      - "3306:3306"  # Expose MySQL on port 3306
+    networks:
+      - app-network
+
+  # Frontend service (React)
+  frontend:
+    build:
+      context: ./frontend  # Path to your React frontend
+    ports:
+      - "3000:3000"  # Expose frontend on port 3000
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+      INTERNAL_API_BASE_URL: http://backend:8080
+    depends_on:
+      - backend  # Make sure backend is ready before frontend starts
+    networks:
+      - app-network
+
+# Define custom network
+networks:
+  app-network:
+    driver: bridge
+
+# Define volumes
+volumes:
+  db-data:
+    driver: local

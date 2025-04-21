@@ -1,0 +1,33 @@
+Technical Test
+Objective
+Create an API and SPA that will demonstrate your technical skills in full-stack development. The
+API should allow users to input a search and retrieve relevant snippets from a document. It
+should work with any reasonable plain text document that can be uploaded.
+Requirements
+Frontend (React)
+Create a simple, clean, and intuitive React-based web interface that:
+● Allows users to upload any text file to act as the knowledge base
+● Allows users to query the text file to fuzzy find relevant chunks on information
+● Render the returned snippets in a pleasing way
+Backend (Go)
+Develop an API to handle requests from the frontend. You may use any libraries you see fit.
+Errors should be handled/reported properly. Use goroutines when appropriate.
+Submission Requirements
+AI: Please avoid extensive use of LLMs when solving this technical test. We need to see your
+own abilities to solve issues and find solutions.
+Codebase: Provide a link to any repos created for your work.
+Documentation:
+1. Instructions to set up and run the project.
+2. Provide a brief explanation of the architecture and design decisions. Include any plans
+you had that you may not have had time for.
+3. Example queries and expected outputs.
+Happy coding!
+Bonus Points
+If you have time and feel up to an extra challenge, pick and choose any of the following items to
+include in your submission.
+● Use Docker to containerize the application.
+● Implement a basic caching mechanism to speed up repeated queries.
+● Add unit tests for key components.
+● Enhance the frontend with additional features like query history or result highlighting.
+● Queuing for file uploads
+● User specific file uploads
