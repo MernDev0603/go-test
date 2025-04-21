@@ -98,7 +98,6 @@ export default function DocumentClient({
       searchquery: query
     })
     .then(response => {
-      console.log('Search result:', response.data.results);
       setIsLoading(false);
   
       // Add assistant response to the messages state after getting the result
@@ -220,7 +219,7 @@ export default function DocumentClient({
                             .map((source: any) => (
                               <button
                                 className="border bg-gray-200 px-3 py-1 hover:bg-gray-100 transition rounded-lg"
-                                onClick={() => console.log("123")}
+                                onClick={() => console.log("")}
                               >
                                 p. {extractSourcePageNumber(source)}
                               </button>

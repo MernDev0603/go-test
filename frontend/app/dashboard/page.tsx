@@ -10,10 +10,9 @@ export default async function Page() {
   let docsList = [];
   try {
     const response = await axios.get(`${process.env.INTERNAL_API_BASE_URL}/docs/${user?.id}`)
-    console.log(response.data)
     docsList = response.data
   } catch(e) {
-
+    console.log(e);
   }
 
   // const docsList = [{
